@@ -1,23 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fakePosts } from "../utils/fakePosts";
 import Reddit from "../utils/Reddit";
-
-const shouldFake = false
 
 export const loadPosts = createAsyncThunk(
     'posts/getPosts',
-    async () => {
-        if (shouldFake) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(fakePosts)
-                }, 2000)
-            })
-        } else {
-            return Reddit.getPosts()
+    async (_, { rejectWithValue }) => {
+        try {
+            const posts = await Reddit.getPosts()
+            return posts
+        } catch (error) {
+            return rejectWithValue(error.message)
         }
     }
-);
+)
   
 
 const sliceOptions = {
@@ -42,6 +36,7 @@ const sliceOptions = {
             .addCase(loadPosts.rejected, (state, action) => {
                 state.isLoading = false
                 state.hasError = true
+                console.log("Rejected: " + action.payload)
             })
     }
 }

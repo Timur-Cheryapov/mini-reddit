@@ -10,6 +10,10 @@
     box-shadow: 0 5px 10px 5px lightgray;
 }
 
+.Post h1 {
+    margin: 0;
+}
+
 .PostScore {
     width: 4rem;
     display: flex;
