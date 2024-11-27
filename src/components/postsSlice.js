@@ -1,22 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fakePosts } from "../utils/fakePosts";
+import Reddit from "../utils/Reddit";
+
+const shouldFake = false
 
 export const loadPosts = createAsyncThunk(
     'posts/getPosts',
-        async () => {
+    async () => {
+        if (shouldFake) {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve(fakePosts)
                 }, 2000)
             })
+        } else {
+            return Reddit.getPosts()
         }
-  );
+    }
+);
   
 
 const sliceOptions = {
     name: 'posts',
     initialState: {
-        posts: [{title: 1, score: 1}, {title: 2, score: 1}, {title: 3, score: 1}, {title: 4, score: 1}],
+        posts: [{id: 1}, {id: 2}, {id: 3}, {id: 4}],
         isLoading: false,
         hasError: false
     },

@@ -27,6 +27,7 @@ function App() {
         {hasError ? (
           <>
             <h2>Oh no! Looks like we were unable to find posts!</h2>
+            <p>Maybe you don't have internet connection or the limit of 10 requests per minute was exceeded.</p>
             <button onClick={onTryAgainHandler}>Try again</button>
           </>
         ) : (
