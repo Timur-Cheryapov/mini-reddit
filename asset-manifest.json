@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/mini-reddit/static/css/main.ab14ce60.css",
+    "main.js": "/mini-reddit/static/js/main.81b13eed.js",
+    "static/js/453.55df1e6c.chunk.js": "/mini-reddit/static/js/453.55df1e6c.chunk.js",
+    "static/media/icons8-reddit.svg": "/mini-reddit/static/media/icons8-reddit.a305783f158a6b261c1e98f047462680.svg",
+    "static/media/down-arrow-svgrepo-com.svg": "/mini-reddit/static/media/down-arrow-svgrepo-com.306d6fe383f98b387fd5d24879929f27.svg",
+    "static/media/up-arrow-svgrepo-com.svg": "/mini-reddit/static/media/up-arrow-svgrepo-com.3c530e66b8d6b28cf3855b37d9609e5b.svg",
+    "index.html": "/mini-reddit/index.html",
+    "main.ab14ce60.css.map": "/mini-reddit/static/css/main.ab14ce60.css.map",
+    "main.81b13eed.js.map": "/mini-reddit/static/js/main.81b13eed.js.map",
+    "453.55df1e6c.chunk.js.map": "/mini-reddit/static/js/453.55df1e6c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab14ce60.css",
+    "static/js/main.81b13eed.js"
+  ]
+}
