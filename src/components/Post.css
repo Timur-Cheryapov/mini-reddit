@@ -10,6 +10,11 @@
     box-shadow: 0 5px 10px 5px lightgray;
 }
 
+.Post a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .Post h1 {
     margin: 0;
 }
@@ -56,4 +61,20 @@
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #d3d3d3;
+    padding-top: 1rem;
+}
+
+.PostData p {
+    margin: 0;
+}
+
+.PostComments {
+    display: flex;
+    align-items: middle;
+}
+
+.PostComments img {
+    vertical-align: middle;
+    height: 1.5rem;
+    padding-left: 0.5rem;
 }

@@ -1,6 +1,7 @@
 import './Post.css'
 import upArrow from '../stock/up-arrow-svgrepo-com.svg'
 import downArrow from '../stock/down-arrow-svgrepo-com.svg'
+import commentsIcon from '../stock/comments-outlined-conversation-svgrepo-com.svg'
 import { useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -17,7 +18,7 @@ function Post(props) {
                 <img src={downArrow} alt="Downvote" />
             </div>
             <div className="PostContainer">
-                <h1>{isLoading ? <Skeleton /> : post.title}</h1>
+                <h1>{isLoading ? <Skeleton /> : <a href={post.url} target="_blank" rel="noreferrer">{post.title}</a>}</h1>
                 <div className="PostImageContainer">
                     {isLoading ? (
                         <Skeleton height="25rem" />
@@ -28,7 +29,10 @@ function Post(props) {
                 <div className="PostData">
                     <p>{isLoading ? <Skeleton width="7rem"/> : "Posted by " + post.postedBy}</p>
                     <p>{isLoading ? <Skeleton width="7rem"/> : post.date}</p>
-                    <p>{isLoading ? <Skeleton width="7rem"/> : post.comments + " comments"}</p>
+                    <div className="PostComments">
+                        <p>{isLoading ? <Skeleton width="7rem"/> : post.comments}</p>
+                        <img src={commentsIcon} alt="Comments" />
+                    </div>
                 </div>
             </div>
         </div>

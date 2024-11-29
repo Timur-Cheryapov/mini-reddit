@@ -9,8 +9,10 @@
 }
 
 .App-header {
+  position: fixed;
+  width: 100%;
   background-color: #282c34;
-  min-height: 5rem;
+  height: 6rem;
   display: flex;
   flex-direction: row;
   align-items: center;
