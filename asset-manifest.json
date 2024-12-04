@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/mini-reddit/static/css/main.c57dfbe0.css",
-    "main.js": "/mini-reddit/static/js/main.23b76a8f.js",
+    "main.css": "/mini-reddit/static/css/main.512f41c4.css",
+    "main.js": "/mini-reddit/static/js/main.dbd03886.js",
     "static/js/453.55df1e6c.chunk.js": "/mini-reddit/static/js/453.55df1e6c.chunk.js",
     "static/media/icons8-reddit.svg": "/mini-reddit/static/media/icons8-reddit.a305783f158a6b261c1e98f047462680.svg",
+    "static/media/profile-circle-svgrepo-com.svg": "/mini-reddit/static/media/profile-circle-svgrepo-com.66c4d04dba127e3384ccc58946e3ede2.svg",
     "static/media/down-arrow-svgrepo-com.svg": "/mini-reddit/static/media/down-arrow-svgrepo-com.306d6fe383f98b387fd5d24879929f27.svg",
     "static/media/up-arrow-svgrepo-com.svg": "/mini-reddit/static/media/up-arrow-svgrepo-com.3c530e66b8d6b28cf3855b37d9609e5b.svg",
     "index.html": "/mini-reddit/index.html",
     "static/media/comments-outlined-conversation-svgrepo-com.svg": "/mini-reddit/static/media/comments-outlined-conversation-svgrepo-com.f36495a90064f0411042b6845fd3c034.svg",
-    "main.c57dfbe0.css.map": "/mini-reddit/static/css/main.c57dfbe0.css.map",
-    "main.23b76a8f.js.map": "/mini-reddit/static/js/main.23b76a8f.js.map",
+    "main.512f41c4.css.map": "/mini-reddit/static/css/main.512f41c4.css.map",
+    "main.dbd03886.js.map": "/mini-reddit/static/js/main.dbd03886.js.map",
     "453.55df1e6c.chunk.js.map": "/mini-reddit/static/js/453.55df1e6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c57dfbe0.css",
-    "static/js/main.23b76a8f.js"
+    "static/css/main.512f41c4.css",
+    "static/js/main.dbd03886.js"
   ]
 }
