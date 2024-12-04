@@ -68,6 +68,17 @@
     margin: 0;
 }
 
+.PostProfile {
+    display: flex;
+    align-items: middle;
+}
+
+.PostProfile img {
+    vertical-align: middle;
+    height: 1.5rem;
+    padding-right: 0.5rem;
+}
+
 .PostComments {
     display: flex;
     align-items: middle;

@@ -2,6 +2,7 @@ import './Post.css'
 import upArrow from '../stock/up-arrow-svgrepo-com.svg'
 import downArrow from '../stock/down-arrow-svgrepo-com.svg'
 import commentsIcon from '../stock/comments-outlined-conversation-svgrepo-com.svg'
+import profileIcon from '../stock/profile-circle-svgrepo-com.svg'
 import { useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -27,7 +28,10 @@ function Post(props) {
                     )}
                 </div>
                 <div className="PostData">
-                    <p>{isLoading ? <Skeleton width="7rem"/> : "Posted by " + post.postedBy}</p>
+                    <div className="PostProfile">
+                        <img src={profileIcon} alt="Profile" />
+                        <p>{isLoading ? <Skeleton width="7rem"/> : post.postedBy}</p>
+                    </div>
                     <p>{isLoading ? <Skeleton width="7rem"/> : post.date}</p>
                     <div className="PostComments">
                         <p>{isLoading ? <Skeleton width="7rem"/> : post.comments}</p>
