@@ -8,7 +8,9 @@ function Posts() {
 
     return (
         <div className="Posts">
-            {posts.filter(post => post.id).map(post => <Post post={post} key={post.id} />)}
+            {posts.filter(post => post.id).map(post =>
+                <Post post={post} key={post.id} />
+            )}
         </div>
     )
 }

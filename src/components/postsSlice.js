@@ -3,9 +3,9 @@ import Reddit from "../utils/Reddit";
 
 export const loadPosts = createAsyncThunk(
     'posts/getPosts',
-    async (_, { rejectWithValue }) => {
+    async (subreddit, { rejectWithValue }) => {
         try {
-            const posts = await Reddit.getPosts()
+            const posts = await Reddit.getPosts(subreddit)
             return posts
         } catch (error) {
             return rejectWithValue(error.message)
@@ -24,7 +24,8 @@ export const searchPosts = createAsyncThunk(
         }
     }
 )
-  
+
+// TODO: Make posts change based on current url
 
 const sliceOptions = {
     name: 'posts',

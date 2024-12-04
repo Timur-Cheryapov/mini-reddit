@@ -37,11 +37,15 @@ const numberRounder = (number) => {
     return millions + '.' + Math.round((number % 1000000) / 100000) + 'M'
 }
 
+const isImage = (url) => {
+    const regex = /\.(png|jpeg|jpg|gif|webp)/i;
+    return regex.test(url)
+}
+
 const dataToPostMapper = (data) => {
     const { id, title, url, score, author, created_utc, num_comments, permalink } = data
 
-    const regex = /\.(png|jpeg|jpg|gif|webp)/i;
-    if (!regex.test(url)) return {}
+    if (!isImage(url)) return {}
 
     return {
         id: id,
@@ -55,10 +59,30 @@ const dataToPostMapper = (data) => {
     }
 }
 
+const dataToSubredditsMapper = (subreddits) => {
+    console.log(subreddits)
+    const subredditsObject = {}
+
+    for (let subreddit of subreddits) {
+        const { id, title, display_name_prefixed, icon_img } = subreddit.data
+        
+        if (!isImage(icon_img)) continue
+
+        subredditsObject[id] = {
+            id,
+            title,
+            url: display_name_prefixed,
+            img: icon_img,
+        }
+    }
+    
+    return subredditsObject
+}
+
 const Reddit = {
-    async getPosts() {
+    async getPosts(subreddit) {
         try {
-            const response = await fetch('https://api.reddit.com/r/pics.json')
+            const response = await fetch('https://api.reddit.com' + subreddit + '.json')
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`)
             }
@@ -80,6 +104,20 @@ const Reddit = {
             return json.data.children.map((child) => dataToPostMapper(child.data))
         } catch (error) {
             console.error('Error searching posts:', error)
+            throw error
+        }
+    },
+
+    async getSubreddits() {
+        try {
+            const response = await fetch('https://api.reddit.com/subreddits.json?limit=10')
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            const json = await response.json()
+            return dataToSubredditsMapper(json.data.children)
+        } catch (error) {
+            console.error('Error fetching subreddits:', error)
             throw error
         }
     }

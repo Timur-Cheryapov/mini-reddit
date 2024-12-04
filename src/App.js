@@ -1,21 +1,34 @@
 import logo from './icons8-reddit.svg';
 import './App.css';
 import Posts from './components/Posts'
+import Subreddits from './components/Subreddits';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPosts, searchPosts } from './components/postsSlice';
+import { loadSubreddits } from './components/subredditsSlice';
+import { selectSubreddit } from './components/subredditsSlice';
 
 function App() {
+  // TODO: Change current url to let users go back and forward
   const dispatch = useDispatch()
   const { hasError } = useSelector((state) => state.posts)
+
+  // TODO: Make subreddit change with respect to the user's click in subredits list
+  const subreddit = useSelector(selectSubreddit)
+
   const [query, setQuery] = useState('')
 
   useEffect(() => {
-    dispatch(loadPosts())
-  }, [dispatch])
+    dispatch(loadPosts(subreddit.url))
+    dispatch(loadSubreddits())
+  }, [dispatch, subreddit])
 
   const onTryAgainHandler = () => {
-    dispatch(loadPosts())
+    if (query) {
+      dispatch(searchPosts(query))
+    } else {
+      dispatch(loadPosts(subreddit.url))
+    }
   }
 
   const onQueryChangeHandler = ({ target }) => {
@@ -50,7 +63,10 @@ function App() {
             <button onClick={onTryAgainHandler}>Try again</button>
           </>
         ) : (
-          <Posts />
+          <>
+            <Subreddits />
+            <Posts />
+          </>
         )}
       </main>
     </div>
