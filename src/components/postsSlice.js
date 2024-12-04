@@ -12,6 +12,18 @@ export const loadPosts = createAsyncThunk(
         }
     }
 )
+
+export const searchPosts = createAsyncThunk(
+    'posts/searchPosts',
+    async (query, { rejectWithValue }) => {
+        try {
+            const posts = await Reddit.searchPosts(query)
+            return posts
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
   
 
 const sliceOptions = {
@@ -34,6 +46,20 @@ const sliceOptions = {
                 state.posts = action.payload
             })
             .addCase(loadPosts.rejected, (state, action) => {
+                state.isLoading = false
+                state.hasError = true
+                console.log("Rejected: " + action.payload)
+            })
+            .addCase(searchPosts.pending, (state, action) => {
+                state.isLoading = true
+                state.hasError = false
+            })
+            .addCase(searchPosts.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.hasError = false
+                state.posts = action.payload
+            })
+            .addCase(searchPosts.rejected, (state, action) => {
                 state.isLoading = false
                 state.hasError = true
                 console.log("Rejected: " + action.payload)

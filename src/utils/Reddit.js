@@ -1,19 +1,3 @@
-const Reddit = {
-    async getPosts() {
-        try {
-            const response = await fetch('https://api.reddit.com/r/pics.json')
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`)
-            }
-            const json = await response.json()
-            return json.data.children.map((child) => dataToPostMapper(child.data))
-        } catch (error) {
-            console.error('Error fetching posts:', error)
-            throw error
-        }
-    },
-}
-
 const relativeTime = (date) => {
     var msPerMinute = 60 * 1000;
     var msPerHour = msPerMinute * 60;
@@ -54,9 +38,10 @@ const numberRounder = (number) => {
 }
 
 const dataToPostMapper = (data) => {
-    const { id, title, url, is_gallery, score, author, created_utc, num_comments, permalink } = data
+    const { id, title, url, score, author, created_utc, num_comments, permalink } = data
 
-    if (is_gallery) return {}
+    const regex = /\.(png|jpeg|jpg|gif|webp)/i;
+    if (!regex.test(url)) return {}
 
     return {
         id: id,
@@ -67,6 +52,36 @@ const dataToPostMapper = (data) => {
         date: relativeTime(created_utc),
         comments: numberRounder(num_comments),
         url: "https://www.reddit.com" + permalink
+    }
+}
+
+const Reddit = {
+    async getPosts() {
+        try {
+            const response = await fetch('https://api.reddit.com/r/pics.json')
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            const json = await response.json()
+            return json.data.children.map((child) => dataToPostMapper(child.data))
+        } catch (error) {
+            console.error('Error fetching posts:', error)
+            throw error
+        }
+    },
+
+    async searchPosts(query) {
+        try {
+            const response = await fetch(`https://api.reddit.com/search.json?q=${query}`)
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            const json = await response.json()
+            return json.data.children.map((child) => dataToPostMapper(child.data))
+        } catch (error) {
+            console.error('Error searching posts:', error)
+            throw error
+        }
     }
 }
 

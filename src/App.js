@@ -1,13 +1,14 @@
 import logo from './icons8-reddit.svg';
 import './App.css';
 import Posts from './components/Posts'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPosts } from './components/postsSlice';
+import { loadPosts, searchPosts } from './components/postsSlice';
 
 function App() {
   const dispatch = useDispatch()
   const { hasError } = useSelector((state) => state.posts)
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     dispatch(loadPosts())
@@ -17,11 +18,29 @@ function App() {
     dispatch(loadPosts())
   }
 
+  const onQueryChangeHandler = ({ target }) => {
+    setQuery(target.value)
+  }
+
+  const onSearchHandler = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(searchPosts(query))
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>MiniReddit</p>
+        <input
+          type="search"
+          name="search"
+          placeholder="Search"
+          className="SearchBar"
+          onChange={onQueryChangeHandler}
+          value={query}
+          onKeyUp={onSearchHandler} />
       </header>
       <main>
         {hasError ? (
