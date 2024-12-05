@@ -1,11 +1,11 @@
-import logo from './icons8-reddit.svg';
+import logo from '../../icons8-reddit.svg';
 import './App.css';
-import Posts from './components/Posts'
-import Subreddits from './components/Subreddits';
+import Posts from '../Posts/Posts'
+import Subreddits from '../Subreddits/Subreddits';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPosts, searchPosts } from './components/postsSlice';
-import { loadSubreddits } from './components/subredditsSlice';
+import { loadPosts, searchPosts } from '../Posts/postsSlice';
+import { loadSubreddits } from '../Subreddits/subredditsSlice';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 
 function App() {

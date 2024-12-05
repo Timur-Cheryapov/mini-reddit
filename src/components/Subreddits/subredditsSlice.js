@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Reddit from "../utils/Reddit";
+import Reddit from "../../utils/Reddit";
 
 export const loadSubreddits = createAsyncThunk(
     'subreddits/getSubreddits',
