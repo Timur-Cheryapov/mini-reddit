@@ -8,10 +8,12 @@ This is the portfolio project task from online-platform codecademy.com.
 
 ## Features
 * Browse for popular pictures from reddit
+* Switch between different subreddits
+* Search for interesting posts
 * See information about each post like Score, Author and number of Comments
 
 ## How to use
-Just launch it locally. Soon I will make this project interactive on my personal timur-cheryapov.github.io website.
+Just launch it locally. Or you can visit this project on my [personal website](https://timur-cheryapov.github.io/mini-reddit/)
 
 ## Technologies
 * React
