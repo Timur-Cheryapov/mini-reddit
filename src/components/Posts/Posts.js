@@ -1,7 +1,7 @@
 import './Posts.css'
 import Post from './Post'
 import { useSelector } from 'react-redux'
-import { selectPosts } from './postsSlice'
+import { selectPosts } from '../postsSlice'
 
 function Posts() {
     const posts = useSelector(selectPosts)

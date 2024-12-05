@@ -1,6 +1,6 @@
 import './Subreddits.css'
 import Subreddit from './Subreddit';
-import { selectSubreddits } from "./subredditsSlice";
+import { selectSubreddits } from "../subredditsSlice";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 
