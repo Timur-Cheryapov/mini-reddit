@@ -1,6 +1,6 @@
-/* .Subreddit {
-    
-} */
+.Subreddit {
+    flex-basis: 100%;
+}
 
 .Subreddit p {
     margin: 0;

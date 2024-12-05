@@ -13,15 +13,17 @@ function App() {
   const dispatch = useDispatch()
   const { hasError } = useSelector((state) => state.posts)
 
-  // TODO: Make subreddit change with respect to the user's click in subredits list
   const subreddit = useSelector(selectSubreddit)
 
   const [query, setQuery] = useState('')
 
   useEffect(() => {
     dispatch(loadPosts(subreddit.url))
-    dispatch(loadSubreddits())
   }, [dispatch, subreddit])
+
+  useEffect(() => {
+    dispatch(loadSubreddits())
+  }, [dispatch])
 
   const onTryAgainHandler = () => {
     if (query) {

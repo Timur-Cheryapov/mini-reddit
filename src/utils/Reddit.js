@@ -60,18 +60,18 @@ const dataToPostMapper = (data) => {
 }
 
 const dataToSubredditsMapper = (subreddits) => {
-    console.log(subreddits)
     const subredditsObject = {}
 
     for (let subreddit of subreddits) {
-        const { id, title, display_name_prefixed, icon_img } = subreddit.data
+        const { id, title, url, display_name_prefixed, icon_img } = subreddit.data
         
         if (!isImage(icon_img)) continue
 
         subredditsObject[id] = {
             id,
             title,
-            url: display_name_prefixed,
+            url,
+            titlePrefixed: display_name_prefixed,
             img: icon_img,
         }
     }

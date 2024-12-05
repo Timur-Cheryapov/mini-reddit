@@ -20,7 +20,9 @@ const sliceOptions = {
             '1': {title: '1'},
             '2': {title: '2'},
             '3': {title: '3'},
-            '4': {title: '4'}
+            '4': {title: '4'},
+            '5': {title: '5'},
+            '6': {title: '6'}
         },
         subreddit: { id: 'pics', title: 'pics', url: '/r/pics' },
         isLoading: false,
