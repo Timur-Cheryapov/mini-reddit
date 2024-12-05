@@ -24,15 +24,10 @@ const sliceOptions = {
             '5': {title: '5'},
             '6': {title: '6'}
         },
-        subreddit: { id: 'pics', title: 'pics', url: '/r/pics' },
         isLoading: false,
         hasError: false
     },
-    reducers: {
-        setSubreddit(state, action) {
-            state.subreddit = state.subreddits[action.payload]
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(loadSubreddits.pending, (state, action) => {

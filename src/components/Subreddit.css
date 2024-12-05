@@ -9,3 +9,7 @@
 .Subreddit img {
     height: 3rem;
 }
+
+.Subreddit img:hover {
+    cursor: pointer;
+}

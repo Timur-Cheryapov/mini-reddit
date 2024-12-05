@@ -1,18 +1,19 @@
 import './Subreddits.css'
 import Subreddit from './Subreddit';
-import { selectSubreddits, selectSubreddit } from "./subredditsSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { setSubreddit } from './subredditsSlice';
+import { selectSubreddits } from "./subredditsSlice";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Subreddits() {
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const subreddits = useSelector(selectSubreddits)
-    const currentSubreddit = useSelector(selectSubreddit)
+    const { subredditName } = useParams()
     const { hasError } = useSelector(state => state.subreddits)
 
     const onSubredditClickHandlerCreator = (id) => {
         return () => {
-            dispatch(setSubreddit(id))
+            navigate('/mini-reddit' + subreddits[id].url)
         }
     }
 
@@ -25,7 +26,7 @@ function Subreddits() {
                     subreddit={subreddits[id]}
                     key={id}
                     onClick={onSubredditClickHandlerCreator(id)}
-                    isSelected={currentSubreddit.id === id}
+                    isSelected={'/r/' + subredditName + '/' === subreddits[id].url}
                 />
             )}
         </div>

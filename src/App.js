@@ -6,30 +6,34 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPosts, searchPosts } from './components/postsSlice';
 import { loadSubreddits } from './components/subredditsSlice';
-import { selectSubreddit } from './components/subredditsSlice';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 
 function App() {
-  // TODO: Change current url to let users go back and forward
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { hasError } = useSelector((state) => state.posts)
 
-  const subreddit = useSelector(selectSubreddit)
+  const { subredditName } = useParams()
 
   const [query, setQuery] = useState('')
-
-  useEffect(() => {
-    dispatch(loadPosts(subreddit.url))
-  }, [dispatch, subreddit])
+  const [searchParams] = useSearchParams()
+  const queryFromUrl = searchParams.get('q')
 
   useEffect(() => {
     dispatch(loadSubreddits())
+    navigate('/mini-reddit/r/pics/')
   }, [dispatch])
+
+  useEffect(() => {
+    if (subredditName !== undefined) dispatch(loadPosts('/r/' + subredditName))
+    if (queryFromUrl) dispatch(searchPosts(queryFromUrl))
+  }, [dispatch, navigate, subredditName, queryFromUrl])
 
   const onTryAgainHandler = () => {
     if (query) {
       dispatch(searchPosts(query))
     } else {
-      dispatch(loadPosts(subreddit.url))
+      dispatch(loadPosts('/r/' + subredditName))
     }
   }
 
@@ -40,6 +44,7 @@ function App() {
   const onSearchHandler = (event) => {
     if (event.key === 'Enter') {
       dispatch(searchPosts(query))
+      navigate(`/mini-reddit?q=${query}`)
     }
   }
 
