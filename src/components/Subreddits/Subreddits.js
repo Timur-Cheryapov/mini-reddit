@@ -13,7 +13,7 @@ function Subreddits() {
 
     const onSubredditClickHandlerCreator = (id) => {
         return () => {
-            navigate('/mini-reddit' + subreddits[id].url)
+            navigate(subreddits[id].url)
         }
     }
 

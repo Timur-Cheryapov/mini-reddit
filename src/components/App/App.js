@@ -21,12 +21,12 @@ function App() {
 
   useEffect(() => {
     dispatch(loadSubreddits())
-    navigate('/mini-reddit/r/pics/')
   }, [dispatch])
 
   useEffect(() => {
     if (subredditName !== undefined) dispatch(loadPosts('/r/' + subredditName))
-    if (queryFromUrl) dispatch(searchPosts(queryFromUrl))
+    else if (queryFromUrl !== undefined) dispatch(searchPosts(queryFromUrl))
+    else navigate('/r/pics/')
   }, [dispatch, navigate, subredditName, queryFromUrl])
 
   const onTryAgainHandler = () => {
@@ -44,7 +44,7 @@ function App() {
   const onSearchHandler = (event) => {
     if (event.key === 'Enter') {
       dispatch(searchPosts(query))
-      navigate(`/mini-reddit?q=${query}`)
+      navigate(`/?q=${query}`)
     }
   }
 
